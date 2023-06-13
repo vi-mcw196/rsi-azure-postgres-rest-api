@@ -63,4 +63,10 @@ public class PersonController {
         System.out.println("...called countAllPersons");
         return ResponseEntity.status(HttpStatus.OK).header(HttpHeaders.CONTENT_TYPE).body(personService.count());
     }
+
+    @GetMapping("/persons/myData")
+    public ResponseEntity<String> getMyData() {
+        String data = "Viktor Moldovan oraz Nataliia Martynenko";
+        return ResponseEntity.ok(data);
+    }
 }
