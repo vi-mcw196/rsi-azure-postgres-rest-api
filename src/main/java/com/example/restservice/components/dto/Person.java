@@ -1,5 +1,8 @@
 package com.example.restservice.components.dto;
 import jakarta.persistence.*;
+import jakarta.validation.constraints.Email;
+import jakarta.validation.constraints.Min;
+import jakarta.validation.constraints.NotBlank;
 
 @Entity
 @Table(name = "persons")
@@ -8,19 +11,22 @@ public class Person {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
 
+    @NotBlank(message = "First name is required")
     @Column(name = "first_name")
     private String firstName;
 
+    @Min(value = 1, message = "Age must be greater than or equal to 1")
     @Column(name = "age")
     private int age;
 
+    @NotBlank(message = "Email is required")
+    @Email(message = "Invalid email format")
     @Column(name = "email")
     private String email;
 
     @Enumerated(EnumType.STRING)
     @Column(name = "status")
     private PersonStatus status;
-
 
     public Person() {
     }

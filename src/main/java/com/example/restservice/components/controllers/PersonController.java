@@ -2,6 +2,7 @@ package com.example.restservice.components.controllers;
 
 import com.example.restservice.components.dto.Person;
 import com.example.restservice.components.services.PersonService;
+import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
@@ -40,13 +41,13 @@ public class PersonController {
     }
 
     @PostMapping("/persons/")
-    public ResponseEntity<Person> addPerson(@RequestBody Person person) {
+    public ResponseEntity<Person> addPerson(@Valid @RequestBody Person person) {
         System.out.println("...called POST");
         return new ResponseEntity<>(personService.add(person), HttpStatus.CREATED);
     }
 
     @PutMapping("/persons/{id}")
-    public ResponseEntity<Person> updatePerson(@PathVariable Integer id, @RequestBody Person person) {
+    public ResponseEntity<Person> updatePerson(@PathVariable Integer id, @Valid @RequestBody Person person) {
         System.out.println("...called PUT");
         return new ResponseEntity<>(personService.update(id, person), HttpStatus.OK);
     }
