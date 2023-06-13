@@ -28,9 +28,15 @@ public class PersonController {
     }
 
     @GetMapping("/persons/")
-    public ResponseEntity<List<Person>> getAllPersons() {
+    public ResponseEntity<List<Person>> getAllPersons(@RequestParam(required = false) String firstName) {
         System.out.println("...called GET(all)");
-        return new ResponseEntity<>(personService.findAll(), HttpStatus.OK);
+        List<Person> persons;
+        if (firstName != null) {
+            persons = personService.getPersonsByFirstName(firstName);
+        } else {
+            persons = personService.findAll();
+        }
+        return new ResponseEntity<>(persons, HttpStatus.OK);
     }
 
     @DeleteMapping("/persons/{id}")

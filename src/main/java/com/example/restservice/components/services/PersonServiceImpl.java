@@ -64,4 +64,9 @@ public class PersonServiceImpl implements PersonService {
         ArrayList<Person> personList = new ArrayList<>(personRepository.findAll());
         return personList.size();
     }
+
+    @Override
+    public List<Person> getPersonsByFirstName(String firstName) {
+        return new ArrayList<>(personRepository.findByFirstName(firstName));
+    }
 }

@@ -11,5 +11,6 @@ public interface PersonService {
     public Person update(Integer id, Person person);
     public Boolean deleteById(Integer id);
     public Integer count();
+    List<Person> getPersonsByFirstName(String firstName);
 
 }
